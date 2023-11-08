@@ -10,3 +10,4 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 ## Things learned:
 
 - Made a grid using GridView widget to display categories in a grid
+- Passed a default value to to a parameter in case no value given to that parameter
