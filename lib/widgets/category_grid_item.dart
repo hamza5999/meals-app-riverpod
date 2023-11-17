@@ -3,14 +3,19 @@ import 'package:meals_app/models/category.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
+  final void Function() onSelectCategory;
 
-  const CategoryGridItem({required this.category, super.key});
+  const CategoryGridItem({
+    required this.category,
+    required this.onSelectCategory,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     // Used InkWell to add tap gesture and a tapping affect to the widget
     return InkWell(
-      onTap: () {},
+      onTap: onSelectCategory,
       // this borderRadius is for the tapping affect
       borderRadius: BorderRadius.circular(10),
       child: Container(
