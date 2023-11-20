@@ -13,6 +13,7 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - MemoryImage
 - NetworkImage
 - Positioned
+- ListView
 
 ## Things learned:
 
@@ -26,3 +27,4 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Used MemoryImage class to load an image locally or from the app memory
 - Used NetworkImage class to load an image from the network or internet
 - Used Positioned widget to position the widgets on the Stack widget
+- Used simple ListView widget to display a list
