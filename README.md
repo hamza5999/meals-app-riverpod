@@ -8,6 +8,11 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - SliverGridDelegateWithFixedCrossAxisCount
 - InkWell
 - Navigator.of(context).push()
+- Stack
+- FadeInImage
+- MemoryImage
+- NetworkImage
+- Positioned
 
 ## Things learned:
 
@@ -16,3 +21,8 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Used InkWell widget to make any widget tapable and to add a highlighting effect on clicking that item
 - Used Navigator class to add cross screen navigations
 - Used where() and contains() to filter list items
+- Used Stack widget to show items on each other like a stack
+- Used FadeInImage utility widget to show to show an image with a fade in animation
+- Used MemoryImage class to load an image locally or from the app memory
+- Used NetworkImage class to load an image from the network or internet
+- Used Positioned widget to position the widgets on the Stack widget
