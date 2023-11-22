@@ -23,11 +23,13 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void _toggleFavoriteMealStatus(Meal meal) {
-    if (_favoriteMeals.contains(meal)) {
-      _favoriteMeals.remove(meal);
-    } else {
-      _favoriteMeals.add(meal);
-    }
+    setState(() {
+      if (_favoriteMeals.contains(meal)) {
+        _favoriteMeals.remove(meal);
+      } else {
+        _favoriteMeals.add(meal);
+      }
+    });
   }
 
   @override
@@ -39,7 +41,7 @@ class _TabsScreenState extends State<TabsScreen> {
     if (_selectedPageIndex == 1) {
       activePage = MealsScreen(
         title: "Favorites",
-        meals: [],
+        meals: _favoriteMeals,
         onToggleFavorite: _toggleFavoriteMealStatus,
       );
     }
