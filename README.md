@@ -32,3 +32,4 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Used simple ListView widget to display a list
 - Made a navigation bar using the BottomNavigationBar widget
 - Made navigation bar tabs using the BottomNavigationBarItem widget
+- Passed function as a pointer through multiple widgets
