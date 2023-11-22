@@ -49,19 +49,25 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String activePageTitle = "Categories";
+
     Widget activePage = CategoriesScreen(
       onToggleFavorite: _toggleFavoriteMealStatus,
     );
 
     if (_selectedPageIndex == 1) {
       activePage = MealsScreen(
-        title: "Favorites",
         meals: _favoriteMeals,
         onToggleFavorite: _toggleFavoriteMealStatus,
       );
+
+      activePageTitle = "Favorites";
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(activePageTitle),
+      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
