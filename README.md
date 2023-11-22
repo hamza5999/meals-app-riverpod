@@ -16,6 +16,9 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - ListView
 - BottomNavigationBar
 - BottomNavigationBarItem
+- Drawer
+- DrawerHeader
+- ListTile
 
 ## Things learned:
 
@@ -33,3 +36,6 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Made a navigation bar using the BottomNavigationBar widget
 - Made navigation bar tabs using the BottomNavigationBarItem widget
 - Passed function as a pointer through multiple widgets
+- Made a custom drawer using the builtin flutter widget named Drawer()
+- Add a drawer header using the builtin flutter widget named DrawerHeader()
+- Used a flutter widget named ListTile() to display drawer links inside the drawer.
