@@ -48,6 +48,15 @@ class _TabsScreenState extends State<TabsScreen> {
     );
   }
 
+  void _setScreen(String identifier) {
+    if (identifier == 'filters') {
+    } else {
+      Navigator.of(context).pop(); // just close the drawer as we are already
+      // in the tabs screen. We don't need to navigate to the tabs screen as
+      // doing that would be redundent
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String activePageTitle = "Categories";
@@ -69,7 +78,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      drawer: const MainDrawer(),
+      drawer: MainDrawer(onSelectScreen: _setScreen,),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {

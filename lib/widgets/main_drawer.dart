@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key});
+  final void Function(String identifier) onSelectScreen;
+
+  const MainDrawer({required this.onSelectScreen, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,9 @@ class MainDrawer extends StatelessWidget {
                     fontSize: 26,
                   ),
             ),
-            onTap: () {},
+            onTap: () {
+              onSelectScreen('meals');
+            },
           ),
           // ListTile is simply a builtin flutter widget that is optimized for
           // outputting items in a list
@@ -79,7 +83,9 @@ class MainDrawer extends StatelessWidget {
                     fontSize: 26,
                   ),
             ),
-            onTap: () {},
+            onTap: () {
+              onSelectScreen('filters');
+            },
           )
         ],
       ),
