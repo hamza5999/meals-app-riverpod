@@ -19,6 +19,7 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Drawer
 - DrawerHeader
 - ListTile
+- SwitchListTile
 
 ## Things learned:
 
@@ -38,4 +39,5 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Passed function as a pointer through multiple widgets
 - Made a custom drawer using the builtin flutter widget named Drawer()
 - Add a drawer header using the builtin flutter widget named DrawerHeader()
-- Used a flutter widget named ListTile() to display drawer links inside the drawer.
+- Used a flutter widget named ListTile() to display drawer links inside the drawer
+- Used a flutter widget named SwitchListTile() to display builtin flutter switches
