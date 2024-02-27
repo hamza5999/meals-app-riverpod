@@ -78,7 +78,16 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      drawer: MainDrawer(onSelectScreen: _setScreen,),
+      drawer: MainDrawer(
+        onSelectScreen: _setScreen,
+      ), // we could also use the flutter's builtin default Drawer() widget but
+      // in this case there were too many customizations so we decided to make
+      // our own sidebar drawer "MainDrawer"
+
+      // sidebar or drawer is added on screen to screen basis, so if you
+      // want to show it on both the categories and favorites screen then add
+      // it on the common screen containing both the above mentioned screens
+      // that is tabsscreen
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {

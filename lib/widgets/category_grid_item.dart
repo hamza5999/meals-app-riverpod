@@ -14,6 +14,8 @@ class CategoryGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Used InkWell to add tap gesture and a tapping affect to the widget
+    // Could use GestureDetector widget as well for this purpose but that won't
+    // have any tapping affect thats why used InkWell widget
     return InkWell(
       onTap: onSelectCategory,
       // this borderRadius is for the tapping affect

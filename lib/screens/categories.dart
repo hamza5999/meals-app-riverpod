@@ -19,6 +19,7 @@ class CategoriesScreen extends StatelessWidget {
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 
+    // Navigator.push(context, route)
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => MealsScreen(
@@ -41,6 +42,7 @@ class CategoriesScreen extends StatelessWidget {
         childAspectRatio: 3 / 2,
       ),
       children: [
+        // availableCategories.map((category) => CategoryGridItem(category: category, onSelectCategory: () { _selectedCategory(context, category); },),)
         for (final category in availableCategories)
           CategoryGridItem(
             category: category,
