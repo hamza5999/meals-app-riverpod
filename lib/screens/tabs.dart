@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/categories.dart';
+import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
@@ -49,11 +50,23 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void _setScreen(String identifier) {
+    Navigator.of(context).pop(); // just close the drawer as we are already
+    // in the tabs screen. We don't need to navigate to the tabs screen as
+    // doing that would be redundent
+
+    // we want to close the drawer everytime before going to any screen so
+    // adding it at the start of the function - code improvement
     if (identifier == 'filters') {
-    } else {
-      Navigator.of(context).pop(); // just close the drawer as we are already
-      // in the tabs screen. We don't need to navigate to the tabs screen as
-      // doing that would be redundent
+      // we can also use Navigator.of(context).pushReplacement() instead of this
+      // Navigator.of(context).push() if we dont want to go back on back button
+      // press it will simply replace the screen instead of adding it on top of
+      // the stack so the back button won't move us to the previous screen
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: ((context) => const FiltersScreen()),
+        ),
+      );
     }
   }
 
