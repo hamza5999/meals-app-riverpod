@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/data/dummy_data.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/categories.dart';
 import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
+
+// its a global variable and it a convention in flutter to add k with the name
+// of the global variable its just a convention not neccessary to do so
+const kInitialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false
+};
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -17,6 +27,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
+  Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   void _selectedPage(int index) {
     setState(() {
@@ -64,7 +75,8 @@ class _TabsScreenState extends State<TabsScreen> {
 
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
-          builder: ((context) => const FiltersScreen()),
+          builder: ((context) =>
+              FiltersScreen(currentFilters: _selectedFilters)),
         ),
       );
       // as we are passing some data from Navigator.of(context).pop() inside
@@ -79,16 +91,36 @@ class _TabsScreenState extends State<TabsScreen> {
       // have to tell dart the type keys and values too. So we added
       // <Filter, bool> with the <Map> making it to <Map<Filter, bool>>
 
-      print(result);
+      setState(() {
+        _selectedFilters = result ?? kInitialFilters; // ?? checks if the value
+      }); // is null then it assigned the value given in the right side of ??
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where((meal) {
+      if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
+        return false;
+      }
+      if (_selectedFilters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+        return false;
+      }
+      if (_selectedFilters[Filter.vegetarian]! && !meal.isVegetarian) {
+        return false;
+      }
+      if (_selectedFilters[Filter.vegan]! && !meal.isVegan) {
+        return false;
+      }
+
+      return true;
+    }).toList();
+
     String activePageTitle = "Categories";
 
     Widget activePage = CategoriesScreen(
       onToggleFavorite: _toggleFavoriteMealStatus,
+      availableMeals: availableMeals,
     );
 
     if (_selectedPageIndex == 1) {

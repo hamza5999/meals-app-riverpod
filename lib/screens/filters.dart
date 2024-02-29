@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 enum Filter { glutenFree, lactoseFree, vegetarian, vegan }
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key});
+  final Map<Filter, bool> currentFilters;
+  const FiltersScreen({required this.currentFilters, super.key});
 
   @override
   State<FiltersScreen> createState() {
@@ -16,6 +17,20 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _lactoseFreeFilterSet = false;
   bool _vegetarianFilterSet = false;
   bool _veganFilterSet = false;
+
+  // Added the initState() to initialize the filters with the current value
+  // so it won't reset back to nothing. Have to use the initState() method
+  // because currentFilters variable was in the widget class and we need to
+  // access here in the state class
+  @override
+  void initState() {
+    super.initState();
+
+    _glutenFreeFilterSet = widget.currentFilters[Filter.glutenFree]!;
+    _lactoseFreeFilterSet = widget.currentFilters[Filter.lactoseFree]!;
+    _vegetarianFilterSet = widget.currentFilters[Filter.vegetarian]!;
+    _veganFilterSet = widget.currentFilters[Filter.vegan]!;
+  }
 
   @override
   Widget build(BuildContext context) {

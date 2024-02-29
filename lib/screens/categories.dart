@@ -7,15 +7,20 @@ import 'package:meals_app/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final void Function(Meal meal) onToggleFavorite;
+  final List<Meal> availableMeals;
 
-  const CategoriesScreen({required this.onToggleFavorite, super.key});
+  const CategoriesScreen({
+    required this.onToggleFavorite,
+    required this.availableMeals,
+    super.key,
+  });
 
   // We have to pass BuildContext as a parameter because we don't have global
   // context available in Stateless widgets. It is present by default in the
   // Stateful widgets
 
   void _selectedCategory(BuildContext context, Category category) {
-    final filteredMeals = dummyMeals
+    final filteredMeals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 
