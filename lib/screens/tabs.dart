@@ -49,7 +49,7 @@ class _TabsScreenState extends State<TabsScreen> {
     );
   }
 
-  void _setScreen(String identifier) {
+  void _setScreen(String identifier) async {
     Navigator.of(context).pop(); // just close the drawer as we are already
     // in the tabs screen. We don't need to navigate to the tabs screen as
     // doing that would be redundent
@@ -62,11 +62,24 @@ class _TabsScreenState extends State<TabsScreen> {
       // press it will simply replace the screen instead of adding it on top of
       // the stack so the back button won't move us to the previous screen
 
-      Navigator.of(context).push(
+      final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
           builder: ((context) => const FiltersScreen()),
         ),
       );
+      // as we are passing some data from Navigator.of(context).pop() inside
+      // the FiltersScreen we have to receive it too. And in here we are
+      // receiving it a final variable. Had to add await before the
+      // Navigator.of(context).push() and async with the _setScreen method
+      // because we are getting a Future from the FiltersScreen widget
+
+      // we have to specify the data of the returned object in the push()
+      // because Navigator.of(context).push() is a generic method. We were
+      // returning a map so we added <Map> but Map is also a generic type so we
+      // have to tell dart the type keys and values too. So we added
+      // <Filter, bool> with the <Map> making it to <Map<Filter, bool>>
+
+      print(result);
     }
   }
 
