@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/data/dummy_data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/categories.dart';
 import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
+import 'package:meals_app/providers/meals_provider.dart';
 
 // its a global variable and it a convention in flutter to add k with the name
 // of the global variable its just a convention not neccessary to do so
@@ -15,16 +16,21 @@ const kInitialFilters = {
   Filter.vegan: false
 };
 
-class TabsScreen extends StatefulWidget {
+// in order to use or consume the state data from the Provider we have to change
+// our StatefullWidget to ConsumerStatefulWidget to tell flutter that we want
+// to consume the state of the Provider not the simple one
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+// similarly here too. we have to change the state class from State to
+// ConsumerState and add it everywhere it is being used
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
@@ -99,7 +105,20 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
+    // this ref is provided by the flutter_riverpod package to fetch the state
+    // or to use the provider and the state in it. its a builtin keyword
+
+    // if we want to read the data only once then we use ref.read() but if we
+    // want the build method of the widget to run again whenever the state
+    // changes in the provider then we have to use the ref.watch() and it is
+    // recommended too
+
+    // we should always or mostly use the ref.watch(). it
+    // requires a provider as argument and we need to pass the provider which
+    // want to use or consume
+    final meals = ref.watch(mealsProvider);
+
+    final availableMeals = meals.where((meal) {
       if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
         return false;
       }

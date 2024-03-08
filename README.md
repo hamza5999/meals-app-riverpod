@@ -1,6 +1,6 @@
-# Expense Tracker App
+# Meals App (with Riverpod)
 
-The 'Meals App' is a Flutter project that allows users to browse meal categories, save their favorite meals, and apply filters for customized meal selection. And the state here is managed with Riverpod.
+The 'Meals App' is a Flutter project that allows users to browse meal categories, save their favorite meals, and apply filters for customized meal selection. And the cross widget state here is managed using Riverpod.
 
 ## Widgets learned:
 
@@ -21,7 +21,11 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - ListTile
 - SwitchListTile
 - WillPopScope
-- Riverpod
+- Riverpod Package
+- Provider
+- ConsumerStatefulWidget
+- ConsumerState
+- ProviderScope
 
 ## Things learned:
 
@@ -45,4 +49,8 @@ The 'Meals App' is a Flutter project that allows users to browse meal categories
 - Used a flutter widget named SwitchListTile() to display builtin flutter switches
 - Sending some data to the previous screen using the WillPopScope()
 - Passed some data using Navigator.of(context).pop() and received it using Navigator.of(context).push()
-- Using Piverpod for cross widget state management instead of manually handling and passing the state
+- Using Riverpod for cross widget state management instead of manually handling and passing the state
+- Made a provider object to manage the cross widget state using the Provider()
+- Replace the StatefullWidget to ConsumerStatefulWidget to tell flutter that I want to consume Provider data
+- Replace the State class with the ConsumerState similarly to consume the state from the Provider
+- Wrapped the App() with ProviderScope() to make it work and manage the state across whole application
